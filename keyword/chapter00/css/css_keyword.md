@@ -484,7 +484,7 @@ Hint: `bottom`과 `right`속성을 활용해서 진행해주세요. 필요시 �
   - `alternate`: 정방향 -> 역방향 반복
   - `alternate-reverse`: 역방향 -> 정방향 반복복
 
-- **`animation-iteration-count`**: 애니메이션 반복 횟수 설정정
+- **`animation-iteration-count`**: 애니메이션 반복 횟수 설정
 ```css
   .element {
     animation-iteration-count: infinite; /* 무한 반복 */
@@ -503,17 +503,98 @@ Hint: `bottom`과 `right`속성을 활용해서 진행해주세요. 필요시 �
   - `running`: 기본값, 애니메이션 실행
   - `paused`: 애니메이션 일시 정지
 
-- **`animation-timing-function`**: 애니메이션 속도 곡선
+- **`animation-timing-function`**: 애니메이션 속도 곡선. 애니메이션 속도 변화 조절
 ```css
+  .element {
+    animation-timing-function: ease-in-out;
+  }
 ```
-- **`animation-fill-mode`**
+  - `linear`: 일정한 속도로 애니메이션 진행
+  - `ease`: 기본값, 부드럽게 시작하고 끝남
+  - `ease-in`: 시작이 느리고 끝이 빨라짐
+  - `ease-out`: 시작이 빠르고 끝이 느려짐
+  - `ease-in-out`: 시작과 끝이 느리게, 중간에 빠르게
+  - `cubic-bezier(n, n, n, n)`: 사용자 정의 속도 곡선
+
+- **`animation-fill-mode`**: 애니메이션이 실행 전후에 어떤 스타일을 유지할지 결정
 ```css
+  .element {
+    animation-fill-mode: forwards;
+  }
 ```
-- **`@keyframes`**
+  - `none`: 기본값, 애니메이션 끝난 후 원래 스타일로 돌아감감
+  - `forwards`: 애니메이션 마지막 상태 유지
+  - `backwards`: 애니메이션 시작 상태 유지
+  - `both`: `forwards`+`backwards` 적용 (뭔소린지?)
+
+- **`@keyframes`**: 애니메이션이 어떻게 변할지 단계적으로 설정.
 ```css
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  } 
+
+  .element {
+    animation-name: fadeIn;
+    animation-duration: 2s;
+  }
 ```
-- **`축약형`**
+  - 0%부터 100%까지 스타일을 지정하여 원하는 효과를 만들 수 있다!
+
+- **`축약형`**: 위의 모든 속성을 한 줄로 설정
 ```css
+  animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+
+  .element {
+    animation: fadeIn 2s ease-in-out 1s infinite alternate forwards running;
+  }
+```
+ - 이름이 fadein, 2초 분량, 시작과 끝은 느리고 중간은 빠르게 진행, 1초 지연 후 시작,
+ - 무한 반복, 정->역방향 반복, 마지막 상태 유지, 애니메이션은 재생 상태
+
+- 완전 예제 코드
+  - `@keyframes bounce`로 위아래로 튀는 애니메이션 구현
+  - `animation: bounce 1s ease-in-out infinite alternate;`로 무한 반복
+```css
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animation</title>
+    <style>
+      @keyframes bounce {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-50px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: tomato;
+        text-align: center;
+        line-height: 100px;
+        color: white;
+        font-weight: bold;
+        animation: bounce 1s ease-in-out infinite alternate;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">BOUNCE</div>
+  </body>
+  </html>
 ```
 
 * transition과 animation의 차이!!
@@ -524,3 +605,19 @@ Hint: `bottom`과 `right`속성을 활용해서 진행해주세요. 필요시 �
 - 쉽게 말해,
   - "사용자가 조작해야 실행된다" -> `transition`
   - "자동으로 실행되거나 반복되는 애니메이션 필요하다" -> `animation`
+
+  ### 실습  🍠 ----> 해보셈
+
+ **`animation 키워드`**를 학습한 후, 아래와 비슷한 영상을 만들어주세요!
+
+단, **`animation 축약형`**을 사용해주세요!
+
+- [ ]  원은 어떻게 만들까요?
+- Hint
+    
+    **`border-radius` 를 활용해봅시다~!**
+    
+- [ ]  계속 튀기는 애니메이션은 어떻게 하면 쉽게 만들까요?
+- Hint
+    
+    `infinte`, `alternate` 속성을 활용해봅시다!
