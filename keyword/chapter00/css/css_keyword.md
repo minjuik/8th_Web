@@ -34,7 +34,7 @@
     
     </html>
 ```
-- border VS outline의 차이점 🍠
+- border VS outline의 차이점🍠
     - 둘 다 요소의 테두리를 정의하는 속성.
       - border: 요소의 박스 모델 안쪽, 요소 크기에 포함(width, height에 영향)
       - outline: 요소의 경계 바깥쪽, 요소 크기에 포함되지 않음
