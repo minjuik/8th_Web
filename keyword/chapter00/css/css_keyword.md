@@ -22,7 +22,7 @@
         }
     
         .box2 {
-          outline: 10px solid red;
+          outline: 10px solid red;g
         }
       </style>
     </head>
@@ -329,10 +329,51 @@ Hint: `bottom`과 `right`속성을 활용해서 진행해주세요. 필요시 �
 ### transform 🍠
 
 - **`translate`**: 요소를 이동시키는 함수. x축과 y축 기준으로 이동.
-- **`scale`**
-- **`rotate`**
-- **`skew`**
-- **`matrix`**
+  - `translateX(50px);` X축으로만 이동
+  - `translateY(50px);` Y축으로만 이동
+
+```css
+  .element {
+    transform: translate(50px, 100px); /* X축으로 50px, Y축으로 100px 이동 */
+  }
+```
+ - `translate`는 요소를 원래위치에서 상대적으로 이동시킴. 애니메이션 효과 줄때 많이 사용
+
+- **`scale`**: 요소의 크기를 변경하는 함수
+```css
+  .element {
+    transform: scale(1.5); /* 요소를 1.5배 크기로 */
+  }
+```
+  -`scaleX`, `scaleY`를 사용하면 각각 x축 또는 y축 방향으로만 크기 변경 가능
+
+- **`rotate`**: 요소를 회전시키는 함수
+```css
+  .element {
+    transform: rotate(45deg); /* 시계방향으로 45도 회전 */
+  }
+```
+
+- **`skew`**: 요소를 기울이는 함수. x축과 y축을 기준으로 각도를 설정하며 기울인다
+```css
+  .element {
+    transform: skew(30deg, 10deg); /* X축 30도, Y축 10도 기울기 */
+  }
+```
+  - `skewX`, `skewY`를 사용하면 각각 x축 또는 y축 방향으로만 기울이기 가능
+
+- **`matrix`**: 2D 변환을 행렬로 표현하는 함수
+```css
+  .element {
+    transform: matrix(1, 0, 0, 1, 50, 100); /* translate(50px, 100px)과 동일 */
+  }
+```
+  -`matrix(a, b, c, d, e, f)`에서
+    - a, d: 크기(scale) 변환
+    - b, c: 기울기(skew) 변환
+    - e, f: 이동(translate) 변환
+  - `matrix()`는 여러 변환을 한 번에 적용할 때 유용, 그치만 직관적이지 않아 복잡해질 수 있음음
+  - `matrix3d()`는 3D 변환에 사용
 
 ### transition 🍠
 
