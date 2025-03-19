@@ -44,7 +44,10 @@
 
 1. relative 실습
   <aside>
-    https://www.notion.so/makeus-challenge/HANDBOOK-CSS-1b3b57f4596b80f99ec2cb224d6691b1?pvs=4#8e0439be24a84c218ed70864dc643656
+   <img width="559" alt="스크린샷 2024-07-18 오후 6 56 12" src="https://github.com/user-attachments/assets/277f8a05-8123-431d-a06f-6b4b3e3ce3a2" />
+
+<img width="568" alt="스크린샷 2024-07-18 오후 6 57 43" src="https://github.com/user-attachments/assets/e595d3c8-3a51-4cff-8e2c-05d8e151b6ff" />
+
     
 💡 Q: 그럼, 한번 여러분들이 이번에는 위의 이미지 상태에서 고구마 상자를 아래와 같은 이미지처럼 이동시켜 주세요. 
 
@@ -89,6 +92,9 @@ Hint: `bottom`과 `right`속성을 활용해서 진행해주세요. 필요시 �
   * bottom: 아래에서 n만큼 떨어져잇음을 나타냄. 값을 음수로
   * right: 오른쪽에서 n만큼 떨어져잇음을 나타냄. 값을 양수로
 
+![스크린샷 2025-03-19 150104](https://github.com/user-attachments/assets/45063246-af27-4c7c-8fd5-17a20da3ee23)
+
+
 2. absolute 실습
 
 ```html
@@ -131,16 +137,56 @@ Hint: `bottom`과 `right`속성을 활용해서 진행해주세요. 필요시 �
 ```
 - **`position: absolute`**를 활용하여 본인의 힘으로, 아래와 같은 이미지로 BOX2를 이동시켜보세요! 🍠
     
-    ![스크린샷 2024-07-18 오후 7.13.52.png](attachment:5a810066-8c42-4e8a-a2ac-fe8757085432:%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-07-18_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_7.13.52.png)
-    
-    코드는 아래에 첨부해주세요!
+    <img width="505" alt="스크린샷 2024-07-18 오후 7 13 52" src="https://github.com/user-attachments/assets/67a3c027-156f-4e1c-9ede-af3d24f44724" />
 
-    box2가 아래에서 위로 올라감 (box1 상단까지)
+    코드는 아래에 첨부해주세요!
   
     ```html
+    <!DOCTYPE html>
+    <html lang="en">
 
-    
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Document</title>
+          <style>
+            /** 전체 선택자 기본적으로 설정된 마진을 없앰. */
+            * {
+              margin: 0;
+              box-sizing: border-box;
+            }
+
+            .box1 {
+              width: 500px;
+              height: 500px;
+              background-color: purple;
+              color: white;
+              position: relative;
+            }
+
+    .        box2 {
+              width: 200px;
+              height: 200px;
+              background-color: yellow;
+              position: absolute;
+              top: 0px;
+            }
+          </style>
+        </head>
+
+        <body>
+          <div class="box1">BOX1</div>
+          <h1 class="box2">BOX2</h1>
+        </body>
+
+    </html>
     ```
+
+    box2가 아래에서 위로 올라감 (box1 상단까지) -> box2 위치 absolute 후 top:0px;
+
+  ![스크린샷 2025-03-19 151413](https://github.com/user-attachments/assets/c1b9f5b2-ce3c-4f14-ad37-05545b8388ed)
+
+  
 ### 정렬의 진수
 
 
