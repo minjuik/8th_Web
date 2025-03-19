@@ -324,10 +324,15 @@ Hint: `bottom`과 `right`속성을 활용해서 진행해주세요. 필요시 �
   .element {
       background: url('image.jpg') no-repeat center center/cover;
   }
-```
+  ```
 
 ### transform 🍠
 
+- **`translate`**: 요소를 이동시키는 함수. x축과 y축 기준으로 이동.
+- **`scale`**
+- **`rotate`**
+- **`skew`**
+- **`matrix`**
 
 ### transition 🍠
 
