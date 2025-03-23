@@ -27,7 +27,7 @@ const renderTasks = (): void => {
     });
     donetasks.forEach((todo): void => {
         const li = createTodoElement(todo, true); // 완료료 코너에 들어갈 리스트에 대하여 
-        todoList.appendChild(li); // list들을 밀어넣어줌
+        doneList.appendChild(li); // list들을 밀어넣어줌
     })
 };
 

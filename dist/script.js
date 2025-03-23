@@ -14,7 +14,7 @@ const renderTasks = () => {
     });
     donetasks.forEach((todo) => {
         const li = createTodoElement(todo, true);
-        todoList.appendChild(li);
+        doneList.appendChild(li);
     });
 };
 const getTodoText = () => {
