@@ -121,7 +121,7 @@ const str: string = 24; ❌ // 반환값을 문자열로 예상했지만 숫자�
     console.log(multiply(2, 3)); // 6
 
     // 호이스팅 불가능
-    console.log(subtract(5, 2)); // ❌ error: 호이스팅 안됨됨
+    console.log(subtract(5, 2)); // ❌ error: 호이스팅 안됨
 
     const subtract = (a: number, b: number): number => a - b; // return 생략
 
@@ -139,7 +139,54 @@ const str: string = 24; ❌ // 반환값을 문자열로 예상했지만 숫자�
 
 ### 타입 스크립트에만 존재하는 타입 🍠
 
-- any 🍠
-- unknown 🍠
-- void 🍠
-- never 🍠
+- any 🍠: 어떤 타입의 값도 할당할 수 있는 타입
+
+    변수나 매개변수의 타입을 지정하지 않고 런타임에서 동적으로 값을 처리
+
+    타입 검사기를 비활성화하는 역할을 하므로 타입 안정성을 저하시킬 수 있음
+    ```typescript
+    let value: any;
+    value = 42; // 숫자 할당
+    value = "hello"; // 문자열 할당
+    value = true; // 불리언 할당
+    ```
+
+- unknown 🍠: 어떤 값도 할당할 수 있으나, 사용하려면 타입 검사를 통해 타입을 좁혀야 함
+
+    `any`와 비슷하지만 좀 더 안전한 타입
+
+    런타임 오류를 방지할 수 있으며, 타입 안정성 유지 가능
+    ```typescript
+    let value: unknown;
+    value = 42; // 숫자 할당
+    value = "hello"; // 문자열 할당
+    
+    if (typeof value =="string") {
+        console.log(value.length); // 이제 문자열이므로 사용 가능
+    }
+    ```
+
+- void 🍠: 함수가 값을 반환하지 않을 때 사용되는 타입
+
+    보통 반환값이 없는 함수의 반환타입으로 사용되며, 반환값이 없다는 것을 명시적으로 나타냄
+
+    `undefined`와 유사하지만, 값이 없는 상태를 의미하는데 더 사용됨
+    ```typescript
+    function logMessage(message: string): void {
+        console.log(message);
+    }
+    let result: void = logMessage("Hello, TypeScript!");
+    ```
+
+- never 🍠: 결코 값을 반환하지 않는 타입
+
+    실행을 끝내지 않기 때문에 반환값을 가질 수 없다. 주로 무한루프 or 예외를 던지는 함수에서, 그리고 코드 흐름을 제어하는 데 사용
+    ```typescript
+    function throwError(message: string): never {
+        throw new Error(message);
+    }
+    
+    function infiniteLoop(): never {
+        while (true) {}
+    }
+    ```
