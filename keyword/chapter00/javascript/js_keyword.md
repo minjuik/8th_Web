@@ -593,7 +593,7 @@ document.body.appendChild(newDiv); // body에 추가
 
 `element.cloneNode(true)`: 요소 복사 (true는 자식 포함 / false는 자식 제외)
 
-`cloneNide(true)`는 자식 요소까지 복사
+`cloneNode(true)`는 자식 요소까지 복사
 ```javascript
 const original = document.querySelector(".box"); // 첫번째 box 클래스 요소 가져오기
 const copy = original.cloneNode(true); // 자식 포함하여 복사

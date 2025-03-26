@@ -44,7 +44,7 @@ body {
 .todo-container__button {
     background-color: #28a845;
     color: white;
-    padding: 8px 12px; /*상하 좌우우 간격*/
+    padding: 8px 12px; /*상하 좌우 간격*/
     border: none;
     border-radius: 6px;
     font-size: 14px;
