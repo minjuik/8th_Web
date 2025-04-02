@@ -12,7 +12,7 @@ interface IThemeContext { // 테마를 만들어 줄거임
     toggleTheme: () => void; // 테마 변경 액션
 }
 
-export const ThemeContext = createContext<undefined>(undefined);
+export const ThemeContext = createContext<IThemeContext|undefined>(undefined);
 // 테마를 받을 수 있고, 테마 변경하는 것도 받을 수 있음
 
 export const ThemeProvider = ({children}:PropsWithChildren)

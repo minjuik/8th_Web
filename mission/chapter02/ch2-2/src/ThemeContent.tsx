@@ -1,11 +1,11 @@
 // 테마를 받는
 
-import { THEME, useTheme} from "./context/ThemeProvider";
+import { THEME, useTheme } from "./context/ThemeProvider";
 import React from "react";
 import clsx from 'clsx';
 
 export default function ThemeContent(): React.JSX.Element {
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     
     const isLightMode = theme === THEME.LIGHT;
 

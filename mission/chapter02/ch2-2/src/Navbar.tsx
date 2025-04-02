@@ -4,7 +4,7 @@ import React from "react";
 import clsx from 'clsx'
 
 export default function Navbar(): React.JSX.Element {
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     
     const isLightMode = theme === THEME.LIGHT;
 
