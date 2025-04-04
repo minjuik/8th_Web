@@ -17,18 +17,14 @@ export default function MoviePage() {
         category: string;
     }>()
 
-    useEffect((): void=> {
+    useEffect((): void => {
         const fetchMovies = async(): Promise<void> => {
             SetIsPending(true);
-
+        const apiKey = import.meta.env.VITE_TMDB_KEY
             try { 
                 const { data } = await axios.get<MovieResponse>(
-                    `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=${page}`, 
-                    {
-                        headers: {
-                            Authorization: `Bearer ${import.meta.env.VITE_TMDB_KEY}`,
-                        }
-                    }
+                    `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=${page}&api_key=${apiKey}`, 
+                    
                 )
                 
                 setMovies(data.results)
@@ -56,13 +52,13 @@ export default function MoviePage() {
               hover:bg-blue-600 transition-all duration-200 disabled:bg-gray-300 
               cursor-pointer disabled:cursor-not-allowed"
               disabled={page === 1}
-               onClick={(): void => SetPage((prev): number => prev-1)}>
+               onClick={(): void => SetPage((prev) => prev-1)}>
                 {'<'}</button>
               <span>{page} 페이지</span>
               <button 
               className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md shadow-md
               hover:bg-blue-600 transition-all duration-200 cursor-pointer"
-                onClick={(): void => SetPage((prev): number => prev+1)}>
+                onClick={(): void => SetPage((prev) => prev+1)}>
                 {'>'}</button>
             </div>
 
