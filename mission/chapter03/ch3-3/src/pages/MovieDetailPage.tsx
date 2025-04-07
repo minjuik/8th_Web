@@ -34,12 +34,12 @@ export default function MovieDetailPage() {
       setIsLoading(true)
       try {
         const [movieRes, creditRes] = await Promise.all([
-          axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=ko`),
-          axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=ko`)
+          axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en`),
+          axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=en`)
         ])
 
-        setMovie(movieRes.data)
-        setCredits(creditRes.data.cast.slice(0, 10)) // 상위 10명만 표시
+        setMovie(movieRes.data) // 영화정보보
+        setCredits(creditRes.data.cast.slice(0, 12)) // 상위 12명만 표시
       } catch (err) {
         console.error(err)
         setIsError(true)
@@ -71,8 +71,8 @@ export default function MovieDetailPage() {
         />
         <div>
           <h1 className="text-3xl font-bold mb-2">{movie.title}</h1>
-          <p className="text-gray-500 mb-1">개봉일: {movie.release_date}</p>
-          <p className="text-yellow-600 font-semibold mb-2">평점: {movie.vote_average}</p>
+          <p className="text-gray-500 mb-1">Date: {movie.release_date}</p>
+          <p className="text-yellow-600 font-semibold mb-2">Rate: {movie.vote_average}</p>
           <div className="flex flex-wrap gap-2 mb-3">
             {movie.genres.map((genre) => (
               <span key={genre.id} className="bg-blue-100 text-blue-600 px-2 py-1 rounded text-sm">
@@ -85,7 +85,7 @@ export default function MovieDetailPage() {
       </div>
 
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">출연진</h2>
+        <h2 className="text-2xl font-bold mb-4">Casts</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           {credits.map((person) => (
             <div key={person.id} className="flex gap-3 items-center">
@@ -100,7 +100,7 @@ export default function MovieDetailPage() {
               )}
               <div>
                 <p className="font-semibold">{person.name}</p>
-                {person.character && <p className="text-sm text-gray-500">역할: {person.character}</p>}
+                {person.character && <p className="text-sm text-gray-500">character: {person.character}</p>}
               </div>
             </div>
           ))}

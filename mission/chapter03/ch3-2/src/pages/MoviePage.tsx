@@ -9,9 +9,9 @@ import { useParams } from "react-router-dom"
 export default function MoviePage() {
     const [movies, setMovies] = useState<Movie[]>([])
    
-    const [isPending,SetIsPending] = useState(false)  // 로딩상태
-    const [isError, SetIsError] = useState(false) // 에러상태
-    const [page, SetPage] = useState(1) // 페이지
+    const [isPending,setIsPending] = useState(false)  // 로딩상태
+    const [isError, setIsError] = useState(false) // 에러상태
+    const [page, setPage] = useState(1) // 페이지
 
     const { category } = useParams<{
         category: string;
@@ -19,7 +19,7 @@ export default function MoviePage() {
 
     useEffect((): void => {
         const fetchMovies = async(): Promise<void> => {
-            SetIsPending(true);
+            setIsPending(true);
         const apiKey = import.meta.env.VITE_TMDB_KEY
             try { 
                 const { data } = await axios.get<MovieResponse>(
@@ -29,9 +29,9 @@ export default function MoviePage() {
                 
                 setMovies(data.results)
             } catch {
-                SetIsError(true)
+                setIsError(true)
             } finally {
-                SetIsPending(false)
+                setIsPending(false)
             }
         }
         
@@ -52,13 +52,13 @@ export default function MoviePage() {
               hover:bg-blue-600 transition-all duration-200 disabled:bg-gray-300 
               cursor-pointer disabled:cursor-not-allowed"
               disabled={page === 1}
-               onClick={(): void => SetPage((prev) => prev-1)}>
+               onClick={(): void => setPage((prev) => prev-1)}>
                 {'<'}</button>
               <span>{page} 페이지</span>
               <button 
               className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md shadow-md
               hover:bg-blue-600 transition-all duration-200 cursor-pointer"
-                onClick={(): void => SetPage((prev) => prev+1)}>
+                onClick={(): void => setPage((prev) => prev+1)}>
                 {'>'}</button>
             </div>
 
