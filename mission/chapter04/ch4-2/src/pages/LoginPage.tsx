@@ -1,5 +1,6 @@
 import { UserSigninInformation, validateSignin } from "../utils/validate.ts"
 import useForm from "../hooks/useForm.ts"
+import { useNavigate } from "react-router-dom"
 
 const LoginPage = () => {
     const {values, errors, touched, getInputProps} = useForm<UserSigninInformation>( {
@@ -19,8 +20,19 @@ const LoginPage = () => {
     Object.values(errors || {}).some((error) => error.length > 0) || // 오류가 있으면 true
     Object.values(values).some((value) => value ==="") // 입력값이 비어있으면 true
 
+    const navigate = useNavigate();
+
     return (
         <div className="flex flex-col items-center justify-center h-full gap-4">
+            <div className="flex items-center p-4 bg-white text-black">
+            <button type="button" 
+                onClick={() => navigate('/')} 
+                className="text-2xl mr-2 absolute left-10 cursor-pointer">
+                    &lt;
+            </button>
+            <h1 className="text-lg font-semibold">로그인</h1>
+            </div>
+            
             <div className="flex flex-col gap-3">
                 <input 
                     {...getInputProps("email")}
@@ -44,8 +56,8 @@ const LoginPage = () => {
                 {errors?.password && touched?.password && (
                     <div className="text-red-500 text-sm">{errors.password}</div>
                 )}
-                <button type="button" onClick={handleSubmit} disabled={false} 
-                className="w-full bg-blue-600 text-white py-3 rounded-md text-lg
+                <button type="button" onClick={handleSubmit} disabled={isDisabled} 
+                className="w-full bg-blue-600 text-white py-3 rounded-md text-md
                 font-medium hover:bg-blue-700 transition-colors cursor-pointer 
                 disabled:bg-gray-300">로그인</button>
             </div>
