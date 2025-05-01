@@ -12,6 +12,7 @@ import SignupPage from "./pages/SignupPage";
 import MyPage from "./pages/MyPage";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedLayout from "./layouts/ProtectedLayout";
+import { GoogleLoginRedirectPage } from "./pages/GoogleLoginRedirectPage";
 
 // publicRoutes: 인증없이 접근 가능한 라우트
 const publicRoutes: RouteObject[] = [
@@ -23,6 +24,7 @@ const publicRoutes: RouteObject[] = [
       { index: true, element: <HomePage /> },
       { path: "login", element: <LoginPage /> },
       { path: "signup", element: <SignupPage /> },
+      { path: "v1/auth/google/callback", element: <GoogleLoginRedirectPage /> },
     ],
   },
 ];
@@ -33,15 +35,11 @@ const protectedRoutes: RouteObject[] = [
     path: "/",
     element: <ProtectedLayout />,
     errorElement: <NotFoundPage />,
-    children: [
-      { path: "my", element: <MyPage /> },
-    ],
+    children: [{ path: "my", element: <MyPage /> }],
   },
 ];
 
 const router = createBrowserRouter([...publicRoutes, ...protectedRoutes]);
-
-// 보호받아야할사이트
 
 function App() {
   return (
