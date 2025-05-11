@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [refreshToken, setRefreshToken] = useState<string | null>(
     getRefreshTokenFromStorage()
   );
+  
 
   const login = async (signinData: RequestSigninDto) => {
     try {
@@ -52,7 +53,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         setAccessToken(newAccessToken);
         setRefreshToken(newRefreshToken);
         alert("로그인 성공");
-        window.location.href = "/my"; // AuthProvider에선 useNavigate 못써서 이거 사용
+        window.location.href = "/lps"; // AuthProvider에선 useNavigate 못써서 이거 사용
       }
     } catch (error) {
       console.error("로그인 오류", error);

@@ -1,8 +1,33 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { ResponseMyInfoDto } from "../types/auth";
+import { getMyInfo } from "../apis/auth";
 
 const Navbar = () => {
   const { accessToken } = useAuth();
+  const [data, setData] = useState<ResponseMyInfoDto|null>(null);
+  useEffect(() => {
+      const getData = async () => {
+        try {
+          const response = await getMyInfo();
+          console.log(response);
+          setData(response);
+        } catch(error) {
+          console.error("오류입니다", error)
+        }
+      };
+      getData();
+    }, []);
+  
+
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
 
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-md fixed w-full z-10">
@@ -31,19 +56,16 @@ const Navbar = () => {
             </>
           )}
           {accessToken && (
-            <Link
-              to={"/my"}
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-500"
-            >
-              마이페이지
-            </Link>
+            <span className="dark:text-gray-300">{data?.data.name}님, 반갑습니다.</span>
           )}
-          <Link
-            to={"/search"}
-            className="text-gray-700 dark:text-gray-300 hover:text-blue-500"
-          >
-            검색
-          </Link>
+          {accessToken && (
+            <button
+              className="cursor-pointer dark:text-gray-300 hover:text-blue-500"
+              onClick={handleLogout}
+            >
+              로그아웃
+            </button>
+          )}
         </div>
       </div>
     </nav>

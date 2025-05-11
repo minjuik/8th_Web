@@ -24,3 +24,15 @@ export type Lp = {
   likes: Likes[];
 };
 export type ResponseLpListDto = CursorBasedResponse<Lp[]>;
+
+export type LpDetailDto = Lp & {
+  author: {
+      id: number;
+      name: string;
+      email: string;
+      bio: string | null;
+      avatar: string | null;
+      createdAt: string;
+      updatedAt: string;
+  };
+};

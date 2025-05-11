@@ -18,7 +18,7 @@ export const GoogleLoginRedirectPage = () => {
     if (accessToken) {
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
-      window.location.href = "/my";
+      window.location.href = "/lps";
     }
   }, [setAccessToken, setRefreshToken]);
   return <div>GoogleLoginRedirectPage</div>;
