@@ -11,13 +11,15 @@ function validateUser(values: UserSigninInformation) {
 
   if (
     // 이메일 유효성 검사
-    !/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/.test(values.email)
+    /^[A-Za-z0-9]([_.-]?[A-Za-z0-9])@[A-Za-z0-9]([-_.]?[A-za-z0-9])*\.[A-za-z0-9]{2,3}$/i.test(
+      values.email,
+    )
   ) {
-    errors.email = "올바른 형식이 아닙니다.";
+    errors.email = "올바른 이메일 형식이 아닙니다.";
   }
 
   // 비밀번호 8~20자 사이
-  if (!(values.password.length >= 8 && values.password.length < 20)) {
+  if (!(values.password.length >= 8 && values.password.length <= 20)) {
     errors.password = "비밀번호는 8~20자 사이로 입력해주세요.";
   }
 

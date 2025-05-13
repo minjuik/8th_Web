@@ -5,7 +5,7 @@ import { Lp } from "../types/lp";
 import { Sidebar } from "../components/Sidebar";
 
 export const LpDetailPage = () => {
-  const { lpId } = useParams<{lpId: string}>();
+  const { lpId } = useParams<{ lpId: string }>();
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["lpDetail", lpId],
@@ -25,12 +25,20 @@ export const LpDetailPage = () => {
 
       <div className="flex flex-col w-full items-center justify-center gap-2 p-4">
         <h1 className="text-3xl font-bold mb-4">{lp.title}</h1>
+
         <div className="relative flex items-center justify-center">
+          {/* {Lp판} */}
           <img
             src={lp.thumbnail}
             alt={lp.title}
-            className="w-96 h-96 rounded-full object-cover"
+            className="w-96 h-96 rounded-full object-cover shadow-lg
+            animate-spin [animation-duration:10s] [animation-timing-function:linear]"
           />
+          {/* {Lp판 중앙구멍} */}
+          <div className="absolute inset-0 flex justify-center items-center">
+            <div className="w-12 h-12 bg-gray-100 rounded-full shadow-lg
+            border-2 border-gray-300" />
+          </div>
         </div>
 
         <div className="mt-4 text-center">
@@ -46,7 +54,7 @@ export const LpDetailPage = () => {
             Delete
           </button>
           <button className="bg-gray-700 text-white px-4 py-2 rounded cursor-pointer hover:bg-gray-600">
-            ❤️ 1
+            ❤️ {lp.likes.length}
           </button>
         </div>
       </div>

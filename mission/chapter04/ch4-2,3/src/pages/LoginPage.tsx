@@ -20,7 +20,7 @@ const LoginPage = () => {
   const handleSubmit = async () => {
     console.log(values);
     try {
-      const response:ResponseSigninDto = await postSignin(values);
+      const response = await postSignin(values);
       setItem(response.data.accessToken);
       console.log(response);
     } catch (error) {

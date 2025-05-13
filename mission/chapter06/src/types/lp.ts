@@ -32,7 +32,7 @@ export type LpDetailDto = Lp & {
       email: string;
       bio: string | null;
       avatar: string | null;
-      createdAt: string;
-      updatedAt: string;
+      createdAt: Date;
+      updatedAt: Date;
   };
 };

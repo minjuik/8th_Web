@@ -7,7 +7,6 @@ import { ResponseSignupDto } from "../types/auth";
 
 const schema = z.object({
     email: z.string().email({ message: "올바른 이메일 형식이 아닙니다." }),
-
     password: z
       .string()
       .min(8, {
@@ -16,7 +15,6 @@ const schema = z.object({
       .max(20, {
         message: "비밀번호는 20자 이하어야 합니다.",
       }),
-
     passwordCheck: z
       .string()
       .min(8, {
@@ -25,7 +23,6 @@ const schema = z.object({
       .max(20, {
         message: "비밀번호는 20자 이하어야 합니다.",
       }),
-
     name: z.string().min(1, { message: "이름을 입력해주세요." }),
   })
   .refine((data) => data.password === data.passwordCheck, {
@@ -117,7 +114,7 @@ const SignupPage = () => {
           {...register("passwordCheck")}
           className={`border border-[#ccc] w-[300px] p-[10px] focus:border-[#807bff] rounded-sm
                     ${
-                      errors?.password
+                      errors?.passwordCheck
                         ? "border-red-500 bg-red-200"
                         : "border-gray-300"
                     }`}
