@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getLpDetail } from "../apis/lp";
 import { Lp } from "../types/lp";
 import { Sidebar } from "../components/Sidebar";
+import { LpCommentsPage } from "./LpCommentsPage";
 
 export const LpDetailPage = () => {
   const { lpId } = useParams<{ lpId: string }>();
@@ -36,8 +37,10 @@ export const LpDetailPage = () => {
           />
           {/* {Lp판 중앙구멍} */}
           <div className="absolute inset-0 flex justify-center items-center">
-            <div className="w-12 h-12 bg-gray-100 rounded-full shadow-lg
-            border-2 border-gray-300" />
+            <div
+              className="w-12 h-12 bg-gray-100 rounded-full shadow-lg
+            border-2 border-gray-300"
+            />
           </div>
         </div>
 
@@ -57,6 +60,7 @@ export const LpDetailPage = () => {
             ❤️ {lp.likes.length}
           </button>
         </div>
+        <LpCommentsPage />
       </div>
     </div>
   );
