@@ -7,6 +7,7 @@ export const Navbar = () => {
   const { amount, cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
+  // 수량이 변할때마다 총 amount와 총 total 가격에 적용하여 렌더링
   useEffect(() => {
     dispatch(calculateTotals());
   }, [dispatch, cartItems]);
