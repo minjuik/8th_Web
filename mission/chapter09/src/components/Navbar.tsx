@@ -2,15 +2,28 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "../hooks/useCustomRedux";
 import { useEffect } from "react";
 import { calculateTotals } from "../slices/cartSlice";
+import { useCartInfo, useCartActions } from "../store/useCartStore";
 
 export const Navbar = () => {
-  const { amount, cartItems } = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
+  // // redux-toolkit
+  // const { amount, cartItems } = useSelector((state) => state.cart);
+  // const dispatch = useDispatch();
+
+  //zustand
+  const {amount, cartItems} = useCartInfo();
+  const {calculateTotals} = useCartActions();
 
   // 수량이 변할때마다 총 amount와 총 total 가격에 적용하여 렌더링
+
+  // // redux-toolkit
+  // useEffect(() => {
+  //   dispatch(calculateTotals());
+  // }, [dispatch, cartItems]);
+
+  //zustand
   useEffect(() => {
-    dispatch(calculateTotals());
-  }, [dispatch, cartItems]);
+    calculateTotals();
+  }, [cartItems, calculateTotals])
 
   return (
     <div

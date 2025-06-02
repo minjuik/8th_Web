@@ -1,5 +1,6 @@
 import { useDispatch } from "../hooks/useCustomRedux";
 import { increase, decrease, removeItem } from "../slices/cartSlice";
+import { useCartActions } from "../store/useCartStore";
 import type { Lp } from "../types/cart"; // 타입 전용 import
 
 interface CartItemProps {
@@ -7,17 +8,33 @@ interface CartItemProps {
 }
 
 const CartItem = ({ lp }: CartItemProps) => {
-  const dispatch = useDispatch();
+  // // redux-toolkit
+  // const dispatch = useDispatch();
 
+  // zustand
+  const { increase, decrease, removeItem } = useCartActions();
+  
+  // // redux-toolkit
+  // const handleIncreaseCount = () => {
+  //   dispatch(increase({ id: lp.id }));
+  // };
+  // const handleDecreaseCount = () => {
+  //   if (lp.amount === 1) {
+  //     dispatch(removeItem({ id: lp.id }));
+  //     return;
+  //   }
+  //   dispatch(decrease({ id: lp.id }));
+
+  //zustand
   const handleIncreaseCount = () => {
-    dispatch(increase({ id: lp.id }));
+    increase(lp.id);
   };
   const handleDecreaseCount = () => {
     if (lp.amount === 1) {
-      dispatch(removeItem({ id: lp.id }));
+      removeItem(lp.id);
       return;
     }
-    dispatch(decrease({ id: lp.id }));
+    decrease(lp.id);
   };
 
   return (
